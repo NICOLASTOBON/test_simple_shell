@@ -15,7 +15,7 @@ int prompt(char *argv[], char *env[], char *var[])
 	char *buffer = NULL;
 	char **commands;
 	size_t size = 0;
-	int num_command = 0, res, status;
+	int num_command = 0, res = 0, status;
 	ssize_t ret_getl;
 	pid_t pid;
 	(void)argv;
@@ -39,18 +39,22 @@ int prompt(char *argv[], char *env[], char *var[])
 		pid = fork();
 		/** validate if process creation works*/
 		if (pid == -1)
-		{
 			perror("Fork");
-		}
 			/** error*/
 		/** validate if it's child*/
 		if (pid == 0)
 		{
 			res = val_execute_command(commands,buffer, var, env);
 			if (res == -1)
-				printf("Error");
+			{
+				/** path directory */
+				free(buffer);
+				free_commands(commands);
+				exit(EXIT_SUCCESS);
+			}
 		}
 		/** its parent*/
+
 		else
 		{
 			wait(&status);
@@ -62,12 +66,16 @@ int prompt(char *argv[], char *env[], char *var[])
 			/* free buffer, commands and execute exit father */
 			else if (strcmp(commands[0], var[0]) == 0)
         		exit_free(buffer, commands);
+			else
+			{
+				free(buffer);
+				free_commands(commands);
+			}
 		}
 			buffer = NULL; 
 			size = 0;
 			if (isatty(STDIN_FILENO))
 				write(STDOUT_FILENO, USER, 2);
 	}
-	printf("estoy");
 	return (-1);
 }

@@ -12,10 +12,10 @@ char **save_commands(char *buffer)
     char **com = malloc(sizeof(char *));
     if (com == NULL)
         return (NULL);
-    if (buffer == NULL)
-        return (NULL);
     /* change \n given by getline */
     buffer[strlen(buffer) -1] = '\0';
+    if (*buffer == '\0')
+        return (NULL);
     i = 0;
     use = 0;
     capacity = 1;
@@ -35,5 +35,6 @@ char **save_commands(char *buffer)
     }
     temp = NULL;
     com[i] = temp;
+    free(temp);
     return (com);
 }

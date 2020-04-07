@@ -8,7 +8,7 @@
 char *own_strtok(char *str, const char *delim)
 {
 	static int index = 0;
-	char *word = malloc(sizeof(char)*1);
+	char *word = malloc(sizeof(char));
 	int i = index, j = 0, k = 0;
 	int capacity = 1, use = 0;
 

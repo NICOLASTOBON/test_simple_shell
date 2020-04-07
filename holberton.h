@@ -22,5 +22,8 @@ int val_execute_command(char **commands, char *buffer, char **var, char **env);
 void free_commands(char **commands);
 /* exit prompt */ 
 void exit_free(char *buffer, char **commands);
-
+/* show environment */
+void show_env(char **commands, char *bufer, char **env);
+/* clear screen */
+void _clear(char *buffer, char **commands);
 #endif

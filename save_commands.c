@@ -21,7 +21,7 @@ char **save_commands(char *buffer)
     capacity = 1;
     while (1)
     {
-        temp = own_strtok(buffer, " ");
+        temp = strtok(buffer, " ");
         if (*temp == '\0')
             break;
         com[i] = temp;

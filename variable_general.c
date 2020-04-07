@@ -15,3 +15,20 @@ void exit_free(char *buffer, char **commands)
     free_commands(commands);
     exit(EXIT_SUCCESS);
 }
+void show_env(char **commands, char *bufer, char **env)
+{
+	char **get;
+
+	for (get = env; *get != 0; get++)
+		printf("%s\n", *get);
+	free(bufer);
+	free_commands(commands);
+	exit(EXIT_SUCCESS);
+}
+void _clear(char *buffer, char **commands)
+{
+	write(STDOUT_FILENO, "\x1B[1;1H\x1B[2J", 11);
+    free(buffer);
+	free_commands(commands);
+    exit(EXIT_SUCCESS);
+}

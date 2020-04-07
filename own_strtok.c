@@ -29,13 +29,12 @@ char *own_strtok(char *str, const char *delim, int *index)
 				break;
 			}
 			j++;
-
 		}
 		if (word[k] == '\0')
 			break;
 		if (use == capacity)
 		{
-			word = (char *)realloc(word, 1);
+			word = (char *)realloc(word, sizeof(char));
 			capacity += 1;
 		}
 		i++;

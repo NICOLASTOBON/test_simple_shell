@@ -28,13 +28,14 @@ char **save_commands(char *buffer)
         use++;
         if (use == capacity)
         {
-            com = realloc(com, 1);
+            com = realloc(com, sizeof(temp));
             capacity++;
         }
         i++;
     }
+    free(temp);
     temp = NULL;
     com[i] = temp;
-    free(temp);
+    //free(temp);
     return (com);
 }

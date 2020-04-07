@@ -1,0 +1,410 @@
+==30896== Memcheck, a memory error detector
+==30896== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
+==30896== Using Valgrind-3.13.0 and LibVEX; rerun with -h for copyright info
+==30896== Command: ./hsh
+==30896== Parent PID: 28977
+==30896== 
+--30896-- 
+--30896-- Valgrind options:
+--30896--    --leak-check=full
+--30896--    --show-leak-kinds=all
+--30896--    --track-origins=yes
+--30896--    --verbose
+--30896--    --log-file=valgrind-out.txt
+--30896-- Contents of /proc/version:
+--30896--   Linux version 5.3.0-40-generic (buildd@lcy01-amd64-024) (gcc version 7.4.0 (Ubuntu 7.4.0-1ubuntu1~18.04.1)) #32~18.04.1-Ubuntu SMP Mon Feb 3 14:05:59 UTC 2020
+--30896-- 
+--30896-- Arch and hwcaps: AMD64, LittleEndian, amd64-cx16-lzcnt-rdtscp-sse3-avx-avx2-bmi
+--30896-- Page sizes: currently 4096, max supported 4096
+--30896-- Valgrind library directory: /usr/lib/valgrind
+--30896-- Reading syms from /home/nicolastobon09/nicolas/holbertonschool/test_simple_shell/hsh
+--30896-- Reading syms from /lib/x86_64-linux-gnu/ld-2.27.so
+--30896--   Considering /lib/x86_64-linux-gnu/ld-2.27.so ..
+--30896--   .. CRC mismatch (computed 1b7c895e wanted 2943108a)
+--30896--   Considering /usr/lib/debug/lib/x86_64-linux-gnu/ld-2.27.so ..
+--30896--   .. CRC is valid
+--30896-- Reading syms from /usr/lib/valgrind/memcheck-amd64-linux
+--30896--   Considering /usr/lib/valgrind/memcheck-amd64-linux ..
+--30896--   .. CRC mismatch (computed 41ddb025 wanted 9972f546)
+--30896--    object doesn't have a symbol table
+--30896--    object doesn't have a dynamic symbol table
+--30896-- Scheduler: using generic scheduler lock implementation.
+--30896-- Reading suppressions file: /usr/lib/valgrind/default.supp
+==30896== embedded gdbserver: reading from /tmp/vgdb-pipe-from-vgdb-to-30896-by-nicolastobon09-on-???
+==30896== embedded gdbserver: writing to   /tmp/vgdb-pipe-to-vgdb-from-30896-by-nicolastobon09-on-???
+==30896== embedded gdbserver: shared mem   /tmp/vgdb-pipe-shared-mem-vgdb-30896-by-nicolastobon09-on-???
+==30896== 
+==30896== TO CONTROL THIS PROCESS USING vgdb (which you probably
+==30896== don't want to do, unless you know exactly what you're doing,
+==30896== or are doing some strange experiment):
+==30896==   /usr/lib/valgrind/../../bin/vgdb --pid=30896 ...command...
+==30896== 
+==30896== TO DEBUG THIS PROCESS USING GDB: start GDB like this
+==30896==   /path/to/gdb ./hsh
+==30896== and then give GDB the following command
+==30896==   target remote | /usr/lib/valgrind/../../bin/vgdb --pid=30896
+==30896== --pid is optional if only one valgrind process is running
+==30896== 
+--30896-- REDIR: 0x401f2f0 (ld-linux-x86-64.so.2:strlen) redirected to 0x580608c1 (???)
+--30896-- REDIR: 0x401f0d0 (ld-linux-x86-64.so.2:index) redirected to 0x580608db (???)
+--30896-- Reading syms from /usr/lib/valgrind/vgpreload_core-amd64-linux.so
+--30896--   Considering /usr/lib/valgrind/vgpreload_core-amd64-linux.so ..
+--30896--   .. CRC mismatch (computed 50df1b30 wanted 4800a4cf)
+--30896--    object doesn't have a symbol table
+--30896-- Reading syms from /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so
+--30896--   Considering /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so ..
+--30896--   .. CRC mismatch (computed f893b962 wanted 95ee359e)
+--30896--    object doesn't have a symbol table
+==30896== WARNING: new redirection conflicts with existing -- ignoring it
+--30896--     old: 0x0401f2f0 (strlen              ) R-> (0000.0) 0x580608c1 ???
+--30896--     new: 0x0401f2f0 (strlen              ) R-> (2007.0) 0x04c32db0 strlen
+--30896-- REDIR: 0x401d360 (ld-linux-x86-64.so.2:strcmp) redirected to 0x4c33ee0 (strcmp)
+--30896-- REDIR: 0x401f830 (ld-linux-x86-64.so.2:mempcpy) redirected to 0x4c374f0 (mempcpy)
+--30896-- Reading syms from /lib/x86_64-linux-gnu/libc-2.27.so
+--30896--   Considering /lib/x86_64-linux-gnu/libc-2.27.so ..
+--30896--   .. CRC mismatch (computed b1c74187 wanted 042cc048)
+--30896--   Considering /usr/lib/debug/lib/x86_64-linux-gnu/libc-2.27.so ..
+--30896--   .. CRC is valid
+--30896-- REDIR: 0x4edac70 (libc.so.6:memmove) redirected to 0x4a2a6e0 (_vgnU_ifunc_wrapper)
+--30896-- REDIR: 0x4ed9d40 (libc.so.6:strncpy) redirected to 0x4a2a6e0 (_vgnU_ifunc_wrapper)
+--30896-- REDIR: 0x4edaf50 (libc.so.6:strcasecmp) redirected to 0x4a2a6e0 (_vgnU_ifunc_wrapper)
+--30896-- REDIR: 0x4ed9790 (libc.so.6:strcat) redirected to 0x4a2a6e0 (_vgnU_ifunc_wrapper)
+--30896-- REDIR: 0x4ed9d70 (libc.so.6:rindex) redirected to 0x4a2a6e0 (_vgnU_ifunc_wrapper)
+--30896-- REDIR: 0x4edc7c0 (libc.so.6:rawmemchr) redirected to 0x4a2a6e0 (_vgnU_ifunc_wrapper)
+--30896-- REDIR: 0x4edade0 (libc.so.6:mempcpy) redirected to 0x4a2a6e0 (_vgnU_ifunc_wrapper)
+--30896-- REDIR: 0x4edac10 (libc.so.6:bcmp) redirected to 0x4a2a6e0 (_vgnU_ifunc_wrapper)
+--30896-- REDIR: 0x4ed9d00 (libc.so.6:strncmp) redirected to 0x4a2a6e0 (_vgnU_ifunc_wrapper)
+--30896-- REDIR: 0x4ed9800 (libc.so.6:strcmp) redirected to 0x4a2a6e0 (_vgnU_ifunc_wrapper)
+--30896-- REDIR: 0x4edad40 (libc.so.6:memset) redirected to 0x4a2a6e0 (_vgnU_ifunc_wrapper)
+--30896-- REDIR: 0x4ef80f0 (libc.so.6:wcschr) redirected to 0x4a2a6e0 (_vgnU_ifunc_wrapper)
+--30896-- REDIR: 0x4ed9ca0 (libc.so.6:strnlen) redirected to 0x4a2a6e0 (_vgnU_ifunc_wrapper)
+--30896-- REDIR: 0x4ed9870 (libc.so.6:strcspn) redirected to 0x4a2a6e0 (_vgnU_ifunc_wrapper)
+--30896-- REDIR: 0x4edafa0 (libc.so.6:strncasecmp) redirected to 0x4a2a6e0 (_vgnU_ifunc_wrapper)
+--30896-- REDIR: 0x4ed9840 (libc.so.6:strcpy) redirected to 0x4a2a6e0 (_vgnU_ifunc_wrapper)
+--30896-- REDIR: 0x4edb0e0 (libc.so.6:memcpy@@GLIBC_2.14) redirected to 0x4a2a6e0 (_vgnU_ifunc_wrapper)
+--30896-- REDIR: 0x4ed9da0 (libc.so.6:strpbrk) redirected to 0x4a2a6e0 (_vgnU_ifunc_wrapper)
+--30896-- REDIR: 0x4ed97c0 (libc.so.6:index) redirected to 0x4a2a6e0 (_vgnU_ifunc_wrapper)
+--30896-- REDIR: 0x4ed9c70 (libc.so.6:strlen) redirected to 0x4a2a6e0 (_vgnU_ifunc_wrapper)
+--30896-- REDIR: 0x4ee46c0 (libc.so.6:memrchr) redirected to 0x4a2a6e0 (_vgnU_ifunc_wrapper)
+--30896-- REDIR: 0x4edaff0 (libc.so.6:strcasecmp_l) redirected to 0x4a2a6e0 (_vgnU_ifunc_wrapper)
+--30896-- REDIR: 0x4edabe0 (libc.so.6:memchr) redirected to 0x4a2a6e0 (_vgnU_ifunc_wrapper)
+--30896-- REDIR: 0x4ef8eb0 (libc.so.6:wcslen) redirected to 0x4a2a6e0 (_vgnU_ifunc_wrapper)
+--30896-- REDIR: 0x4eda050 (libc.so.6:strspn) redirected to 0x4a2a6e0 (_vgnU_ifunc_wrapper)
+--30896-- REDIR: 0x4edaf20 (libc.so.6:stpncpy) redirected to 0x4a2a6e0 (_vgnU_ifunc_wrapper)
+--30896-- REDIR: 0x4edaef0 (libc.so.6:stpcpy) redirected to 0x4a2a6e0 (_vgnU_ifunc_wrapper)
+--30896-- REDIR: 0x4edc7f0 (libc.so.6:strchrnul) redirected to 0x4a2a6e0 (_vgnU_ifunc_wrapper)
+--30896-- REDIR: 0x4edb040 (libc.so.6:strncasecmp_l) redirected to 0x4a2a6e0 (_vgnU_ifunc_wrapper)
+--30896-- REDIR: 0x4fca3c0 (libc.so.6:__strrchr_avx2) redirected to 0x4c32730 (rindex)
+--30896-- REDIR: 0x4ed3070 (libc.so.6:malloc) redirected to 0x4c2faa0 (malloc)
+--30896-- REDIR: 0x4fc6420 (libc.so.6:__memchr_avx2) redirected to 0x4c33f80 (memchr)
+--30896-- REDIR: 0x4fcaad0 (libc.so.6:__memcpy_avx_unaligned_erms) redirected to 0x4c366e0 (memmove)
+--30896-- REDIR: 0x4fca590 (libc.so.6:__strlen_avx2) redirected to 0x4c32cf0 (strlen)
+--30896-- REDIR: 0x4ed4c30 (libc.so.6:realloc) redirected to 0x4c31cb0 (realloc)
+==30896== Invalid write of size 1
+==30896==    at 0x108C69: own_strtok (in /home/nicolastobon09/nicolas/holbertonschool/test_simple_shell/hsh)
+==30896==    by 0x108FF3: save_commands (in /home/nicolastobon09/nicolas/holbertonschool/test_simple_shell/hsh)
+==30896==    by 0x108DFD: prompt (in /home/nicolastobon09/nicolas/holbertonschool/test_simple_shell/hsh)
+==30896==    by 0x108BA7: main (in /home/nicolastobon09/nicolas/holbertonschool/test_simple_shell/hsh)
+==30896==  Address 0x522d5e1 is 0 bytes after a block of size 1 alloc'd
+==30896==    at 0x4C31D2F: realloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==30896==    by 0x108CD3: own_strtok (in /home/nicolastobon09/nicolas/holbertonschool/test_simple_shell/hsh)
+==30896==    by 0x108FF3: save_commands (in /home/nicolastobon09/nicolas/holbertonschool/test_simple_shell/hsh)
+==30896==    by 0x108DFD: prompt (in /home/nicolastobon09/nicolas/holbertonschool/test_simple_shell/hsh)
+==30896==    by 0x108BA7: main (in /home/nicolastobon09/nicolas/holbertonschool/test_simple_shell/hsh)
+==30896== 
+==30896== Invalid read of size 1
+==30896==    at 0x108CB4: own_strtok (in /home/nicolastobon09/nicolas/holbertonschool/test_simple_shell/hsh)
+==30896==    by 0x108FF3: save_commands (in /home/nicolastobon09/nicolas/holbertonschool/test_simple_shell/hsh)
+==30896==    by 0x108DFD: prompt (in /home/nicolastobon09/nicolas/holbertonschool/test_simple_shell/hsh)
+==30896==    by 0x108BA7: main (in /home/nicolastobon09/nicolas/holbertonschool/test_simple_shell/hsh)
+==30896==  Address 0x522d5e1 is 0 bytes after a block of size 1 alloc'd
+==30896==    at 0x4C31D2F: realloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==30896==    by 0x108CD3: own_strtok (in /home/nicolastobon09/nicolas/holbertonschool/test_simple_shell/hsh)
+==30896==    by 0x108FF3: save_commands (in /home/nicolastobon09/nicolas/holbertonschool/test_simple_shell/hsh)
+==30896==    by 0x108DFD: prompt (in /home/nicolastobon09/nicolas/holbertonschool/test_simple_shell/hsh)
+==30896==    by 0x108BA7: main (in /home/nicolastobon09/nicolas/holbertonschool/test_simple_shell/hsh)
+==30896== 
+==30896== Invalid write of size 1
+==30896==    at 0x108D20: own_strtok (in /home/nicolastobon09/nicolas/holbertonschool/test_simple_shell/hsh)
+==30896==    by 0x108FF3: save_commands (in /home/nicolastobon09/nicolas/holbertonschool/test_simple_shell/hsh)
+==30896==    by 0x108DFD: prompt (in /home/nicolastobon09/nicolas/holbertonschool/test_simple_shell/hsh)
+==30896==    by 0x108BA7: main (in /home/nicolastobon09/nicolas/holbertonschool/test_simple_shell/hsh)
+==30896==  Address 0x522d632 is 1 bytes after a block of size 1 alloc'd
+==30896==    at 0x4C31D2F: realloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==30896==    by 0x108CD3: own_strtok (in /home/nicolastobon09/nicolas/holbertonschool/test_simple_shell/hsh)
+==30896==    by 0x108FF3: save_commands (in /home/nicolastobon09/nicolas/holbertonschool/test_simple_shell/hsh)
+==30896==    by 0x108DFD: prompt (in /home/nicolastobon09/nicolas/holbertonschool/test_simple_shell/hsh)
+==30896==    by 0x108BA7: main (in /home/nicolastobon09/nicolas/holbertonschool/test_simple_shell/hsh)
+==30896== 
+--30896-- REDIR: 0x4ed3950 (libc.so.6:free) redirected to 0x4c30cd0 (free)
+==30896== Invalid write of size 8
+==30896==    at 0x109076: save_commands (in /home/nicolastobon09/nicolas/holbertonschool/test_simple_shell/hsh)
+==30896==    by 0x108DFD: prompt (in /home/nicolastobon09/nicolas/holbertonschool/test_simple_shell/hsh)
+==30896==    by 0x108BA7: main (in /home/nicolastobon09/nicolas/holbertonschool/test_simple_shell/hsh)
+==30896==  Address 0x522d688 is 7 bytes after a block of size 1 alloc'd
+==30896==    at 0x4C31D2F: realloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==30896==    by 0x10903A: save_commands (in /home/nicolastobon09/nicolas/holbertonschool/test_simple_shell/hsh)
+==30896==    by 0x108DFD: prompt (in /home/nicolastobon09/nicolas/holbertonschool/test_simple_shell/hsh)
+==30896==    by 0x108BA7: main (in /home/nicolastobon09/nicolas/holbertonschool/test_simple_shell/hsh)
+==30896== 
+--30907-- REDIR: 0x4fa5d60 (libc.so.6:__strcmp_ssse3) redirected to 0x4c33da0 (strcmp)
+==30907== Use of uninitialised value of size 8
+==30907==    at 0x4FA5D60: __strcmp_ssse3 (strcmp.S:144)
+==30907==    by 0x1090E0: val_execute_command (in /home/nicolastobon09/nicolas/holbertonschool/test_simple_shell/hsh)
+==30907==    by 0x108E39: prompt (in /home/nicolastobon09/nicolas/holbertonschool/test_simple_shell/hsh)
+==30907==    by 0x108BA7: main (in /home/nicolastobon09/nicolas/holbertonschool/test_simple_shell/hsh)
+==30907== 
+==30907== Invalid read of size 1
+==30907==    at 0x4FA5D60: __strcmp_ssse3 (strcmp.S:144)
+==30907==    by 0x1090E0: val_execute_command (in /home/nicolastobon09/nicolas/holbertonschool/test_simple_shell/hsh)
+==30907==    by 0x108E39: prompt (in /home/nicolastobon09/nicolas/holbertonschool/test_simple_shell/hsh)
+==30907==    by 0x108BA7: main (in /home/nicolastobon09/nicolas/holbertonschool/test_simple_shell/hsh)
+==30907==  Address 0x30 is not stack'd, malloc'd or (recently) free'd
+==30907== 
+==30907== 
+==30907== Process terminating with default action of signal 11 (SIGSEGV)
+==30907==  Access not within mapped region at address 0x30
+==30907==    at 0x4FA5D60: __strcmp_ssse3 (strcmp.S:144)
+==30907==    by 0x1090E0: val_execute_command (in /home/nicolastobon09/nicolas/holbertonschool/test_simple_shell/hsh)
+==30907==    by 0x108E39: prompt (in /home/nicolastobon09/nicolas/holbertonschool/test_simple_shell/hsh)
+==30907==    by 0x108BA7: main (in /home/nicolastobon09/nicolas/holbertonschool/test_simple_shell/hsh)
+==30907==  If you believe this happened as a result of a stack
+==30907==  overflow in your program's main thread (unlikely but
+==30907==  possible), you can try to increase the size of the
+==30907==  main thread stack using the --main-stacksize= flag.
+==30907==  The main thread stack size used in this run was 8388608.
+==30907== 
+==30907== HEAP SUMMARY:
+==30907==     in use at exit: 122 bytes in 3 blocks
+==30907==   total heap usage: 8 allocs, 5 frees, 1,157 bytes allocated
+==30907== 
+==30907== Searching for pointers to 3 not-freed blocks
+==30907== Checked 70,976 bytes
+==30907== 
+==30907== 1 bytes in 1 blocks are still reachable in loss record 1 of 3
+==30907==    at 0x4C31D2F: realloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==30907==    by 0x10903A: save_commands (in /home/nicolastobon09/nicolas/holbertonschool/test_simple_shell/hsh)
+==30907==    by 0x108DFD: prompt (in /home/nicolastobon09/nicolas/holbertonschool/test_simple_shell/hsh)
+==30907==    by 0x108BA7: main (in /home/nicolastobon09/nicolas/holbertonschool/test_simple_shell/hsh)
+==30907== 
+==30907== 1 bytes in 1 blocks are definitely lost in loss record 2 of 3
+==30907==    at 0x4C31D2F: realloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==30907==    by 0x108CD3: own_strtok (in /home/nicolastobon09/nicolas/holbertonschool/test_simple_shell/hsh)
+==30907==    by 0x108FF3: save_commands (in /home/nicolastobon09/nicolas/holbertonschool/test_simple_shell/hsh)
+==30907==    by 0x108DFD: prompt (in /home/nicolastobon09/nicolas/holbertonschool/test_simple_shell/hsh)
+==30907==    by 0x108BA7: main (in /home/nicolastobon09/nicolas/holbertonschool/test_simple_shell/hsh)
+==30907== 
+==30907== 120 bytes in 1 blocks are still reachable in loss record 3 of 3
+==30907==    at 0x4C2FB0F: malloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==30907==    by 0x4EBBB8B: getdelim (iogetdelim.c:62)
+==30907==    by 0x108F2D: prompt (in /home/nicolastobon09/nicolas/holbertonschool/test_simple_shell/hsh)
+==30907==    by 0x108BA7: main (in /home/nicolastobon09/nicolas/holbertonschool/test_simple_shell/hsh)
+==30907== 
+==30907== LEAK SUMMARY:
+==30907==    definitely lost: 1 bytes in 1 blocks
+==30907==    indirectly lost: 0 bytes in 0 blocks
+==30907==      possibly lost: 0 bytes in 0 blocks
+==30907==    still reachable: 121 bytes in 2 blocks
+==30907==         suppressed: 0 bytes in 0 blocks
+==30907== 
+==30907== ERROR SUMMARY: 7 errors from 7 contexts (suppressed: 0 from 0)
+==30907== 
+==30907== 1 errors in context 1 of 7:
+==30907== Invalid read of size 1
+==30907==    at 0x4FA5D60: __strcmp_ssse3 (strcmp.S:144)
+==30907==    by 0x1090E0: val_execute_command (in /home/nicolastobon09/nicolas/holbertonschool/test_simple_shell/hsh)
+==30907==    by 0x108E39: prompt (in /home/nicolastobon09/nicolas/holbertonschool/test_simple_shell/hsh)
+==30907==    by 0x108BA7: main (in /home/nicolastobon09/nicolas/holbertonschool/test_simple_shell/hsh)
+==30907==  Address 0x30 is not stack'd, malloc'd or (recently) free'd
+==30907== 
+==30907== 
+==30907== 1 errors in context 2 of 7:
+==30907== Use of uninitialised value of size 8
+==30907==    at 0x4FA5D60: __strcmp_ssse3 (strcmp.S:144)
+==30907==    by 0x1090E0: val_execute_command (in /home/nicolastobon09/nicolas/holbertonschool/test_simple_shell/hsh)
+==30907==    by 0x108E39: prompt (in /home/nicolastobon09/nicolas/holbertonschool/test_simple_shell/hsh)
+==30907==    by 0x108BA7: main (in /home/nicolastobon09/nicolas/holbertonschool/test_simple_shell/hsh)
+==30907== 
+==30907== 
+==30907== 1 errors in context 3 of 7:
+==30907== Invalid write of size 8
+==30907==    at 0x109076: save_commands (in /home/nicolastobon09/nicolas/holbertonschool/test_simple_shell/hsh)
+==30907==    by 0x108DFD: prompt (in /home/nicolastobon09/nicolas/holbertonschool/test_simple_shell/hsh)
+==30907==    by 0x108BA7: main (in /home/nicolastobon09/nicolas/holbertonschool/test_simple_shell/hsh)
+==30907==  Address 0x522d688 is 7 bytes after a block of size 1 alloc'd
+==30907==    at 0x4C31D2F: realloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==30907==    by 0x10903A: save_commands (in /home/nicolastobon09/nicolas/holbertonschool/test_simple_shell/hsh)
+==30907==    by 0x108DFD: prompt (in /home/nicolastobon09/nicolas/holbertonschool/test_simple_shell/hsh)
+==30907==    by 0x108BA7: main (in /home/nicolastobon09/nicolas/holbertonschool/test_simple_shell/hsh)
+==30907== 
+==30907== 
+==30907== 1 errors in context 4 of 7:
+==30907== Invalid write of size 1
+==30907==    at 0x108D20: own_strtok (in /home/nicolastobon09/nicolas/holbertonschool/test_simple_shell/hsh)
+==30907==    by 0x108FF3: save_commands (in /home/nicolastobon09/nicolas/holbertonschool/test_simple_shell/hsh)
+==30907==    by 0x108DFD: prompt (in /home/nicolastobon09/nicolas/holbertonschool/test_simple_shell/hsh)
+==30907==    by 0x108BA7: main (in /home/nicolastobon09/nicolas/holbertonschool/test_simple_shell/hsh)
+==30907==  Address 0x522d632 is 1 bytes after a block of size 1 alloc'd
+==30907==    at 0x4C31D2F: realloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==30907==    by 0x108CD3: own_strtok (in /home/nicolastobon09/nicolas/holbertonschool/test_simple_shell/hsh)
+==30907==    by 0x108FF3: save_commands (in /home/nicolastobon09/nicolas/holbertonschool/test_simple_shell/hsh)
+==30907==    by 0x108DFD: prompt (in /home/nicolastobon09/nicolas/holbertonschool/test_simple_shell/hsh)
+==30907==    by 0x108BA7: main (in /home/nicolastobon09/nicolas/holbertonschool/test_simple_shell/hsh)
+==30907== 
+==30907== 
+==30907== 1 errors in context 5 of 7:
+==30907== Invalid read of size 1
+==30907==    at 0x108CB4: own_strtok (in /home/nicolastobon09/nicolas/holbertonschool/test_simple_shell/hsh)
+==30907==    by 0x108FF3: save_commands (in /home/nicolastobon09/nicolas/holbertonschool/test_simple_shell/hsh)
+==30907==    by 0x108DFD: prompt (in /home/nicolastobon09/nicolas/holbertonschool/test_simple_shell/hsh)
+==30907==    by 0x108BA7: main (in /home/nicolastobon09/nicolas/holbertonschool/test_simple_shell/hsh)
+==30907==  Address 0x522d5e1 is 0 bytes after a block of size 1 alloc'd
+==30907==    at 0x4C31D2F: realloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==30907==    by 0x108CD3: own_strtok (in /home/nicolastobon09/nicolas/holbertonschool/test_simple_shell/hsh)
+==30907==    by 0x108FF3: save_commands (in /home/nicolastobon09/nicolas/holbertonschool/test_simple_shell/hsh)
+==30907==    by 0x108DFD: prompt (in /home/nicolastobon09/nicolas/holbertonschool/test_simple_shell/hsh)
+==30907==    by 0x108BA7: main (in /home/nicolastobon09/nicolas/holbertonschool/test_simple_shell/hsh)
+==30907== 
+==30907== 
+==30907== 1 errors in context 6 of 7:
+==30907== Invalid write of size 1
+==30907==    at 0x108C69: own_strtok (in /home/nicolastobon09/nicolas/holbertonschool/test_simple_shell/hsh)
+==30907==    by 0x108FF3: save_commands (in /home/nicolastobon09/nicolas/holbertonschool/test_simple_shell/hsh)
+==30907==    by 0x108DFD: prompt (in /home/nicolastobon09/nicolas/holbertonschool/test_simple_shell/hsh)
+==30907==    by 0x108BA7: main (in /home/nicolastobon09/nicolas/holbertonschool/test_simple_shell/hsh)
+==30907==  Address 0x522d5e1 is 0 bytes after a block of size 1 alloc'd
+==30907==    at 0x4C31D2F: realloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==30907==    by 0x108CD3: own_strtok (in /home/nicolastobon09/nicolas/holbertonschool/test_simple_shell/hsh)
+==30907==    by 0x108FF3: save_commands (in /home/nicolastobon09/nicolas/holbertonschool/test_simple_shell/hsh)
+==30907==    by 0x108DFD: prompt (in /home/nicolastobon09/nicolas/holbertonschool/test_simple_shell/hsh)
+==30907==    by 0x108BA7: main (in /home/nicolastobon09/nicolas/holbertonschool/test_simple_shell/hsh)
+==30907== 
+==30907== ERROR SUMMARY: 7 errors from 7 contexts (suppressed: 0 from 0)
+--30896-- REDIR: 0x4fa5d60 (libc.so.6:__strcmp_ssse3) redirected to 0x4c33da0 (strcmp)
+==30896== Use of uninitialised value of size 8
+==30896==    at 0x4FA5D60: __strcmp_ssse3 (strcmp.S:144)
+==30896==    by 0x108EAE: prompt (in /home/nicolastobon09/nicolas/holbertonschool/test_simple_shell/hsh)
+==30896==    by 0x108BA7: main (in /home/nicolastobon09/nicolas/holbertonschool/test_simple_shell/hsh)
+==30896== 
+==30896== Invalid read of size 1
+==30896==    at 0x4FA5D60: __strcmp_ssse3 (strcmp.S:144)
+==30896==    by 0x108EAE: prompt (in /home/nicolastobon09/nicolas/holbertonschool/test_simple_shell/hsh)
+==30896==    by 0x108BA7: main (in /home/nicolastobon09/nicolas/holbertonschool/test_simple_shell/hsh)
+==30896==  Address 0x30 is not stack'd, malloc'd or (recently) free'd
+==30896== 
+==30896== 
+==30896== Process terminating with default action of signal 11 (SIGSEGV)
+==30896==  Access not within mapped region at address 0x30
+==30896==    at 0x4FA5D60: __strcmp_ssse3 (strcmp.S:144)
+==30896==    by 0x108EAE: prompt (in /home/nicolastobon09/nicolas/holbertonschool/test_simple_shell/hsh)
+==30896==    by 0x108BA7: main (in /home/nicolastobon09/nicolas/holbertonschool/test_simple_shell/hsh)
+==30896==  If you believe this happened as a result of a stack
+==30896==  overflow in your program's main thread (unlikely but
+==30896==  possible), you can try to increase the size of the
+==30896==  main thread stack using the --main-stacksize= flag.
+==30896==  The main thread stack size used in this run was 8388608.
+==30896== 
+==30896== HEAP SUMMARY:
+==30896==     in use at exit: 122 bytes in 3 blocks
+==30896==   total heap usage: 8 allocs, 5 frees, 1,157 bytes allocated
+==30896== 
+==30896== Searching for pointers to 3 not-freed blocks
+==30896== Checked 70,936 bytes
+==30896== 
+==30896== 1 bytes in 1 blocks are still reachable in loss record 1 of 3
+==30896==    at 0x4C31D2F: realloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==30896==    by 0x10903A: save_commands (in /home/nicolastobon09/nicolas/holbertonschool/test_simple_shell/hsh)
+==30896==    by 0x108DFD: prompt (in /home/nicolastobon09/nicolas/holbertonschool/test_simple_shell/hsh)
+==30896==    by 0x108BA7: main (in /home/nicolastobon09/nicolas/holbertonschool/test_simple_shell/hsh)
+==30896== 
+==30896== 1 bytes in 1 blocks are definitely lost in loss record 2 of 3
+==30896==    at 0x4C31D2F: realloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==30896==    by 0x108CD3: own_strtok (in /home/nicolastobon09/nicolas/holbertonschool/test_simple_shell/hsh)
+==30896==    by 0x108FF3: save_commands (in /home/nicolastobon09/nicolas/holbertonschool/test_simple_shell/hsh)
+==30896==    by 0x108DFD: prompt (in /home/nicolastobon09/nicolas/holbertonschool/test_simple_shell/hsh)
+==30896==    by 0x108BA7: main (in /home/nicolastobon09/nicolas/holbertonschool/test_simple_shell/hsh)
+==30896== 
+==30896== 120 bytes in 1 blocks are still reachable in loss record 3 of 3
+==30896==    at 0x4C2FB0F: malloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==30896==    by 0x4EBBB8B: getdelim (iogetdelim.c:62)
+==30896==    by 0x108F2D: prompt (in /home/nicolastobon09/nicolas/holbertonschool/test_simple_shell/hsh)
+==30896==    by 0x108BA7: main (in /home/nicolastobon09/nicolas/holbertonschool/test_simple_shell/hsh)
+==30896== 
+==30896== LEAK SUMMARY:
+==30896==    definitely lost: 1 bytes in 1 blocks
+==30896==    indirectly lost: 0 bytes in 0 blocks
+==30896==      possibly lost: 0 bytes in 0 blocks
+==30896==    still reachable: 121 bytes in 2 blocks
+==30896==         suppressed: 0 bytes in 0 blocks
+==30896== 
+==30896== ERROR SUMMARY: 7 errors from 7 contexts (suppressed: 0 from 0)
+==30896== 
+==30896== 1 errors in context 1 of 7:
+==30896== Invalid read of size 1
+==30896==    at 0x4FA5D60: __strcmp_ssse3 (strcmp.S:144)
+==30896==    by 0x108EAE: prompt (in /home/nicolastobon09/nicolas/holbertonschool/test_simple_shell/hsh)
+==30896==    by 0x108BA7: main (in /home/nicolastobon09/nicolas/holbertonschool/test_simple_shell/hsh)
+==30896==  Address 0x30 is not stack'd, malloc'd or (recently) free'd
+==30896== 
+==30896== 
+==30896== 1 errors in context 2 of 7:
+==30896== Use of uninitialised value of size 8
+==30896==    at 0x4FA5D60: __strcmp_ssse3 (strcmp.S:144)
+==30896==    by 0x108EAE: prompt (in /home/nicolastobon09/nicolas/holbertonschool/test_simple_shell/hsh)
+==30896==    by 0x108BA7: main (in /home/nicolastobon09/nicolas/holbertonschool/test_simple_shell/hsh)
+==30896== 
+==30896== 
+==30896== 1 errors in context 3 of 7:
+==30896== Invalid write of size 8
+==30896==    at 0x109076: save_commands (in /home/nicolastobon09/nicolas/holbertonschool/test_simple_shell/hsh)
+==30896==    by 0x108DFD: prompt (in /home/nicolastobon09/nicolas/holbertonschool/test_simple_shell/hsh)
+==30896==    by 0x108BA7: main (in /home/nicolastobon09/nicolas/holbertonschool/test_simple_shell/hsh)
+==30896==  Address 0x522d688 is 7 bytes after a block of size 1 alloc'd
+==30896==    at 0x4C31D2F: realloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==30896==    by 0x10903A: save_commands (in /home/nicolastobon09/nicolas/holbertonschool/test_simple_shell/hsh)
+==30896==    by 0x108DFD: prompt (in /home/nicolastobon09/nicolas/holbertonschool/test_simple_shell/hsh)
+==30896==    by 0x108BA7: main (in /home/nicolastobon09/nicolas/holbertonschool/test_simple_shell/hsh)
+==30896== 
+==30896== 
+==30896== 1 errors in context 4 of 7:
+==30896== Invalid write of size 1
+==30896==    at 0x108D20: own_strtok (in /home/nicolastobon09/nicolas/holbertonschool/test_simple_shell/hsh)
+==30896==    by 0x108FF3: save_commands (in /home/nicolastobon09/nicolas/holbertonschool/test_simple_shell/hsh)
+==30896==    by 0x108DFD: prompt (in /home/nicolastobon09/nicolas/holbertonschool/test_simple_shell/hsh)
+==30896==    by 0x108BA7: main (in /home/nicolastobon09/nicolas/holbertonschool/test_simple_shell/hsh)
+==30896==  Address 0x522d632 is 1 bytes after a block of size 1 alloc'd
+==30896==    at 0x4C31D2F: realloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==30896==    by 0x108CD3: own_strtok (in /home/nicolastobon09/nicolas/holbertonschool/test_simple_shell/hsh)
+==30896==    by 0x108FF3: save_commands (in /home/nicolastobon09/nicolas/holbertonschool/test_simple_shell/hsh)
+==30896==    by 0x108DFD: prompt (in /home/nicolastobon09/nicolas/holbertonschool/test_simple_shell/hsh)
+==30896==    by 0x108BA7: main (in /home/nicolastobon09/nicolas/holbertonschool/test_simple_shell/hsh)
+==30896== 
+==30896== 
+==30896== 1 errors in context 5 of 7:
+==30896== Invalid read of size 1
+==30896==    at 0x108CB4: own_strtok (in /home/nicolastobon09/nicolas/holbertonschool/test_simple_shell/hsh)
+==30896==    by 0x108FF3: save_commands (in /home/nicolastobon09/nicolas/holbertonschool/test_simple_shell/hsh)
+==30896==    by 0x108DFD: prompt (in /home/nicolastobon09/nicolas/holbertonschool/test_simple_shell/hsh)
+==30896==    by 0x108BA7: main (in /home/nicolastobon09/nicolas/holbertonschool/test_simple_shell/hsh)
+==30896==  Address 0x522d5e1 is 0 bytes after a block of size 1 alloc'd
+==30896==    at 0x4C31D2F: realloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==30896==    by 0x108CD3: own_strtok (in /home/nicolastobon09/nicolas/holbertonschool/test_simple_shell/hsh)
+==30896==    by 0x108FF3: save_commands (in /home/nicolastobon09/nicolas/holbertonschool/test_simple_shell/hsh)
+==30896==    by 0x108DFD: prompt (in /home/nicolastobon09/nicolas/holbertonschool/test_simple_shell/hsh)
+==30896==    by 0x108BA7: main (in /home/nicolastobon09/nicolas/holbertonschool/test_simple_shell/hsh)
+==30896== 
+==30896== 
+==30896== 1 errors in context 6 of 7:
+==30896== Invalid write of size 1
+==30896==    at 0x108C69: own_strtok (in /home/nicolastobon09/nicolas/holbertonschool/test_simple_shell/hsh)
+==30896==    by 0x108FF3: save_commands (in /home/nicolastobon09/nicolas/holbertonschool/test_simple_shell/hsh)
+==30896==    by 0x108DFD: prompt (in /home/nicolastobon09/nicolas/holbertonschool/test_simple_shell/hsh)
+==30896==    by 0x108BA7: main (in /home/nicolastobon09/nicolas/holbertonschool/test_simple_shell/hsh)
+==30896==  Address 0x522d5e1 is 0 bytes after a block of size 1 alloc'd
+==30896==    at 0x4C31D2F: realloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==30896==    by 0x108CD3: own_strtok (in /home/nicolastobon09/nicolas/holbertonschool/test_simple_shell/hsh)
+==30896==    by 0x108FF3: save_commands (in /home/nicolastobon09/nicolas/holbertonschool/test_simple_shell/hsh)
+==30896==    by 0x108DFD: prompt (in /home/nicolastobon09/nicolas/holbertonschool/test_simple_shell/hsh)
+==30896==    by 0x108BA7: main (in /home/nicolastobon09/nicolas/holbertonschool/test_simple_shell/hsh)
+==30896== 
+==30896== ERROR SUMMARY: 7 errors from 7 contexts (suppressed: 0 from 0)

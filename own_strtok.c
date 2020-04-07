@@ -5,11 +5,11 @@
  *
  *
  */
-char *own_strtok(char *str, const char *delim)
+char *own_strtok(char *str, const char *delim, int *index)
 {
-	static int index = 0;
+	//static int index = 0;
 	char *word = malloc(sizeof(char));
-	int i = index, j = 0, k = 0;
+	int i = *index, j = 0, k = 0;
 	int capacity = 1, use = 0;
 
 	while (str[i] != '\0')
@@ -25,7 +25,7 @@ char *own_strtok(char *str, const char *delim)
 			else
 			{	
 				word[k] = '\0';
-				index = i + 1;
+				*index = i + 1;
 				break;
 			}
 			j++;
@@ -44,7 +44,7 @@ char *own_strtok(char *str, const char *delim)
 	if (str[i] == '\0')
 	{	
 		word[k] = '\0';
-		index = i;
+		*index = i;
 	}
 	return (word);
 }

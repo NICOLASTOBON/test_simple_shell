@@ -7,7 +7,7 @@
  */
 char **save_commands(char *buffer)
 {
-    int capacity, use, i;
+    int capacity, use, i, index = 0;
     char *temp;
     char **com = malloc(sizeof(char *));
     if (com == NULL)
@@ -21,7 +21,7 @@ char **save_commands(char *buffer)
     capacity = 1;
     while (1)
     {
-        temp = strtok(buffer, " ");
+        temp = own_strtok(buffer, " ", &index);
         if (*temp == '\0')
             break;
         com[i] = temp;

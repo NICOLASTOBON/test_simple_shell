@@ -6,7 +6,8 @@
 #include <sys/types.h>
 #include <string.h>
 #include <sys/stat.h>
-
+#include <sys/wait.h>
+#include <signal.h>
 #define USER "$ "
 
 /** prompt */
@@ -17,4 +18,9 @@ char **save_commands(char *buffer);
 char *own_strtok(char *str, const char *delim);
 /**validation and execute commands**/
 int val_execute_command(char **commands, char *buffer, char **var, char **env);
+/** free double pointer */
+void free_commands(char **commands);
+/* exit prompt */ 
+void exit_free(char *buffer, char **commands);
+
 #endif

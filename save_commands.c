@@ -12,13 +12,16 @@ char **save_commands(char *buffer)
     char **com = malloc(sizeof(char *));
     if (com == NULL)
         return (NULL);
-    
+    if (buffer == NULL)
+        return (NULL);
+    /* change \n given by getline */
+    buffer[strlen(buffer) -1] = '\0';
     i = 0;
     use = 0;
     capacity = 1;
     while (1)
     {
-        temp = own_strtok(*buffer, " ");
+        temp = own_strtok(buffer, " ");
         if (*temp == '\0')
             break;
         com[i] = temp;
@@ -30,5 +33,7 @@ char **save_commands(char *buffer)
         }
         i++;
     }
+    temp = NULL;
+    com[i] = temp;
     return (com);
 }

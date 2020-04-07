@@ -48,17 +48,3 @@ char *own_strtok(char *str, const char *delim)
 	}
 	return (word);
 }
-int main(void)
-{
-    char s[100] = "my name is khan";
-    char delm[3] = " ";
-    //char newstr[100];
-    char *str = own_strtok(s, delm);
-    while (*str != '\0'){
-        printf("%s ", str);
-        free(str);
-        str = own_strtok(s, delm);
-    }
-	printf("\n");
-    return 0;
-}

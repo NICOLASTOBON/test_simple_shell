@@ -27,7 +27,7 @@ char **save_commands(char *buffer) // ls -l
     i = 0;
     temp = strtok(buffer, " ");
     //temp = own_strtok(buffer, " ", &index); // 1.1 = ls\0
-    while (*temp != '\0')
+    while (temp != NULL)
     {
         /* if (*temp == '\0')
             break; */

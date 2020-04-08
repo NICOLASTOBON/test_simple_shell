@@ -36,6 +36,6 @@ char **save_commands(char *buffer)
     free(temp);
     temp = NULL;
     com[i] = temp;
-    /*free(temp);*/
+    //free(temp);
     return (com);
 }

@@ -14,16 +14,17 @@ char *own_strtok(char *str, const char *delim, int *index)
 	/* Determine number characters of each word*/
 	for (; str[l] != ' '; l++)
 	{
+		if (str[l] == '\0')
+			break;
 		num_chars++;
 	}
 	/* Allocate memory for each word*/
-	word = malloc(sizeof(char) * num_chars + 1);
+	word = malloc(sizeof(char) * (num_chars + 1));
 	if (word == NULL)
 	{
 		free(word);
 		return (NULL);
 	}
-
 	while (str[i] != '\0')
 	{
 		j = 0;

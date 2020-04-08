@@ -5,8 +5,9 @@ int val_execute_command(char **commands, char *buffer, char **var, char **env)
     if (commands == NULL)
     {
         free(buffer);
+        free_commands(commands);
         exit(EXIT_SUCCESS);
-    }
+    } 
     /* compare and execute exit*/
     else if (strcmp(commands[0], var[0]) == 0)
         exit_free(buffer, commands);

@@ -8,9 +8,21 @@
 char *own_strtok(char *str, const char *delim, int *index)
 {
 	//static int index = 0;
-	char *word = malloc(sizeof(char));
-	int i = *index, j = 0, k = 0;
-	int capacity = 1, use = 0;
+	char *word;
+	int i = *index, j = 0, k = 0, l = i, num_chars = 0;
+
+	/* Determine number characters of each word*/
+	for (; str[l] != ' '; l++)
+	{
+		num_chars++;
+	}
+	/* Allocate memory for each word*/
+	word = malloc(sizeof(char) * num_chars + 1);
+	if (word == NULL)
+	{
+		free(word);
+		return (NULL);
+	}
 
 	while (str[i] != '\0')
 	{
@@ -20,7 +32,6 @@ char *own_strtok(char *str, const char *delim, int *index)
 			if (str[i] != delim[j])
 			{
 				word[k] = str[i];
-				use += 1;
 			}
 			else
 			{	
@@ -32,11 +43,6 @@ char *own_strtok(char *str, const char *delim, int *index)
 		}
 		if (word[k] == '\0')
 			break;
-		if (use == capacity)
-		{
-			word = (char *)realloc(word, sizeof(char));
-			capacity += 1;
-		}
 		i++;
 		k++;
 	}

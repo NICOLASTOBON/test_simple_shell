@@ -24,6 +24,12 @@ char **save_commands(char *buffer)
         temp = own_strtok(buffer, " ", &index);
         if (*temp == '\0')
             break;
+        com[i] = malloc(strlen(temp) + 1);
+        if (com[i] == NULL)
+        {
+            free_commands(com);
+            return(NULL);
+        }
         com[i] = temp;
         use++;
         if (use == capacity)

@@ -48,6 +48,7 @@ int prompt(char *argv[], char *env[], char *var[])
 			if (res == -1)
 			{
 				/** path directory */
+				printf("%s: %d: command not found: %s\n", argv[0],num_command, commands[0]);
 				free(buffer);
 				free_commands(commands);
 				exit(EXIT_SUCCESS);

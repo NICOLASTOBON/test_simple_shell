@@ -5,7 +5,7 @@
  *
  *
  */
-char *own_strtok(char *str, const char *delim, int *index)
+char *own_strtok(char *str, const char *delim, int *index) // ls -l\0, " ", 0
 {
 	//static int index = 0;
 	char *word;
@@ -19,7 +19,7 @@ char *own_strtok(char *str, const char *delim, int *index)
 		num_chars++;
 	}
 	/* Allocate memory for each word*/
-	word = malloc(sizeof(char) * (num_chars + 1));
+	word = malloc(sizeof(char) * (num_chars + 1)); // ls\0
 	if (word == NULL)
 	{
 		free(word);
@@ -32,7 +32,7 @@ char *own_strtok(char *str, const char *delim, int *index)
 		{
 			if (str[i] != delim[j])
 			{
-				word[k] = str[i];
+				word[k] = str[i]; // word = ls\0
 			}
 			else
 			{	

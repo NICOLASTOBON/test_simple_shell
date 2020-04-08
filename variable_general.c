@@ -5,7 +5,13 @@ void free_commands(char **commands)
 	int i;
 	if (commands == NULL)
 		return;
-	for (i = 0; commands[i]; i++)
+	i = 0;
+	while (commands[i])
+	{
+		free(commands[i]);
+		i++;
+	}
+	if (commands[i] == NULL)
 		free(commands[i]);
 	free(commands);
 }

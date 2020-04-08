@@ -10,7 +10,7 @@ char **save_commands(char *buffer)
     int i, w, num_words = 0, index = 0;
     char *temp, **com;
     /* change \n given by getline */
-    buffer[strlen(buffer) -1] = '\0';   //
+    buffer[strlen(buffer) -1] = '\0';   // 
     if (*buffer == '\0')
         return (NULL);
     /* numbers delimiters */
@@ -31,7 +31,7 @@ char **save_commands(char *buffer)
         if (*temp == '\0')
             break;
         com[i] = malloc(strlen(temp) + 1);
-        if (com[i] == NULL)
+        if (com == NULL)
         {
             free_commands(com);
             return(NULL);

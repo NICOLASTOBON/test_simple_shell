@@ -20,10 +20,26 @@ char *own_strtok(char *str, const char *delim, int *index);
 int val_execute_command(char **commands, char *buffer, char **var, char **env);
 /** free double pointer */
 void free_commands(char **commands);
-/* exit prompt */ 
+/* exit prompt */
 void exit_free(char *buffer, char **commands);
 /* show environment */
 void show_env(char **commands, char *bufer, char **env);
 /* clear screen */
 void _clear(char *buffer, char **commands);
+/* send signal */
+void ctrlc__handler(int sig);
+/* commands not found */
+void c_not_found(char **commands, char *buffer, char **argv, int num_command);
+/* end of file */
+void end_of_file(char *buffer);
+/* free all */
+void free_all(char *buffer, char **commands);
+
+/** FUNCTIONS AUXILIAR */
+/* copies a string.*/
+int _strcmp(char *s1, char *s2);
+/* copies n characteres of string */
+char *_strncpy(char *dest, char *src, int n);
+/* length of a string */
+int _strlen(char *s);
 #endif

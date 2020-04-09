@@ -5,78 +5,46 @@
  *
  *
  */
-void enter_handler(int sig)
-{
-	(void)sig;
-	write(STDOUT_FILENO, "\n$ ", 3);
-}
 int prompt(char *argv[], char *env[], char *var[])
 {
-	char *buffer = NULL;
-	char **commands;
-	size_t size = 0;
+	char *buffer = NULL, **commands;
 	int num_command = 0, res = 0, status;
+	size_t size = 0;
 	ssize_t ret_getl;
 	pid_t pid;
 	(void)argv;
 
 	while ((ret_getl = getline(&buffer, &size, stdin)))
 	{
-		signal(SIGINT, enter_handler);
-
+		signal(SIGINT, ctrlc__handler);	/**Signal for ctrl + c*/
 		if (ret_getl == EOF)
-		{
-			if (isatty(STDIN_FILENO))
-				write(STDOUT_FILENO, "\n", 1);
-			free(buffer);
-			exit(0);
-		}
-		/**Signal for ctrl + c*/
+			end_of_file(buffer);
 		num_command++;
-		/**function tha splits buffer in words*/
-		/**and saves each word in an array of strings*/
-		commands = save_commands(buffer);
+		commands = save_commands(buffer); /**function tha splits buffer in words*/
 		pid = fork();
-		/** validate if process creation works*/
-		if (pid == -1)
+		if (pid == -1)	/** validate if process creation works*/
 			perror("Fork");
-			/** error*/
-		/** validate if it's child*/
-		if (pid == 0)
+		if (pid == 0)	/** validate if it's child*/
 		{
-			res = val_execute_command(commands,buffer, var, env);
+			res = val_execute_command(commands, buffer, var, env);
 			if (res == -1)
-			{
-				/** path directory */
-				printf("%s: %d: command not found: %s\n", argv[0],num_command, commands[0]);
-				free(buffer);
-				free_commands(commands);
-				exit(EXIT_SUCCESS);
-			}
+				c_not_found(commands, buffer, argv, num_command);
 		}
-		/** its parent*/
-
-		else
+		else	/** its parent*/
 		{
 			wait(&status);
 			if (commands == NULL)
-			{
-        		free(buffer);
-				free_commands(commands);
-			}
+				free_all(buffer, commands);
 			/* free buffer, commands and execute exit father */
 			else if (strcmp(commands[0], var[0]) == 0)
-        		exit_free(buffer, commands);
+				exit_free(buffer, commands);
 			else
-			{
-				free(buffer);
-				free_commands(commands);
-			}
+				free_all(buffer, commands);
 		}
-			buffer = NULL; 
-			size = 0;
-			if (isatty(STDIN_FILENO))
-				write(STDOUT_FILENO, USER, 2);
+		buffer = NULL;
+		size = 0;
+		if (isatty(STDIN_FILENO))
+			write(STDOUT_FILENO, USER, 2);
 	}
 	return (-1);
 }

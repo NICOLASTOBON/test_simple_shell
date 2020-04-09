@@ -3,6 +3,7 @@
 void free_commands(char **commands)
 {
 	int i;
+
 	if (commands == NULL)
 		return;
 	i = 0;
@@ -15,12 +16,21 @@ void free_commands(char **commands)
 		free(commands[i]);
 	free(commands);
 }
+/**
+ *
+ *
+ *
+ */
 void exit_free(char *buffer, char **commands)
 {
-    free(buffer);
-    free_commands(commands);
-    exit(EXIT_SUCCESS);
+	free(buffer);
+	free_commands(commands);
+	exit(EXIT_SUCCESS);
 }
+/**
+ *
+ *
+ */
 void show_env(char **commands, char *bufer, char **env)
 {
 	char **get;
@@ -31,10 +41,25 @@ void show_env(char **commands, char *bufer, char **env)
 	free_commands(commands);
 	exit(EXIT_SUCCESS);
 }
+/**
+ *
+ *
+ *
+ */
 void _clear(char *buffer, char **commands)
 {
 	write(STDOUT_FILENO, "\x1B[1;1H\x1B[2J", 11);
-    free(buffer);
+	free(buffer);
 	free_commands(commands);
-    exit(EXIT_SUCCESS);
+	exit(EXIT_SUCCESS);
+}
+/**
+ *
+ *
+ *
+ */
+void ctrlc__handler(int sig)
+{
+	(void)sig;
+	write(STDOUT_FILENO, "\n$ ", 3);
 }

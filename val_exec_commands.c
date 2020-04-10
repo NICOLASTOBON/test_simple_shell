@@ -20,8 +20,6 @@ int val_execute_command(char **commands, char *buffer, char **var, char **env)
 	else if (access(commands[0], F_OK) == 0)
 		execve(commands[0], commands, NULL);
 	else
-	{
-		/** path directory */
-	}
+		concat_commands(commands, buffer);
 	return (-1);
 }

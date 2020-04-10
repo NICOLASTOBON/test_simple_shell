@@ -42,4 +42,8 @@ int _strcmp(char *s1, char *s2);
 char *_strncpy(char *dest, char *src, int n);
 /* length of a string */
 int _strlen(char *s);
+
+/**FUNCTIONS ENVIRONMENT */
+void concat_commands(char **commands, char *buffer);
+char **get_path_dir(void);
 #endif

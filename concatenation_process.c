@@ -3,13 +3,28 @@
  * 
  * 
  */
+char *_copy_string(char *dir_path, char *token, char *commands, int len_dir, int len_comm)
+{
+    int i, j;
+
+    for (i = 0; i < len_dir && token[i] != '\0'; i++)
+        dir_path[i] = token[i];
+    dir_path[i] = '/';
+    i++;
+    for (j = 0; j < len_comm && commands[j] != '\0';i++, j++)
+        dir_path[i] = commands[j];
+    dir_path[i] = '\0';
+
+    return (dir_path);
+}
+
 char *_strcat(char *dest, char *src)
 {
 	int i, j;
 
 	for (i = 0; dest[i] != '\0'; i++)
 		;
-	for (j = 0; src[j] != '\0'; j++)
+	for (j = 0; src[j] != '\0';j++)
 		dest[i + j] = src[j];
 
 	return (dest);
@@ -21,43 +36,20 @@ char *_strcat(char *dest, char *src)
  */
 void concat_commands(char **commands, char *buffer)
 {
-    char **concat_com, **path_dir, *temp_dir;
-    int num_commands = 0, w, i, j;
+    char **path_dir = NULL;
+    int i = 0;
 
-    for (w = 0; buffer[w] != '\0'; w++)
-	{
-	    if (buffer[w + 1] == ':' || buffer[w + 1] == '\0')
-			num_commands++;
-	}
-    path_dir = get_path_dir();
-    concat_com = malloc(sizeof(char *) * (num_commands + 1));
-    if (concat_com == NULL)
-        return;
-    i = 0;
+    path_dir = get_path_dir(commands);
     while (path_dir[i] != NULL)
     {
-        temp_dir = path_dir[i];
-        _strcat(temp_dir, "/");
-        _strcat(temp_dir, commands[0]);
-        if(access(temp_dir, F_OK) == 0)
-            break;
+        if (access(path_dir[i], F_OK) == 0)
+            execve(path_dir[i], commands, NULL);
         i++;
     }
-    j = 1;
-    concat_com[0] = temp_dir;
-    printf("%s",concat_com[0]);
-    printf("%s",commands[0]);
-    while(commands[j] != NULL)
-    {
-        _strncpy(concat_com[j],commands[j], _strlen(commands[j]));
-        j++;
-    }
-    concat_com[j] = NULL;
-    if (access(concat_com[0], F_OK) == 0)
-    {
-        printf("entre aqui");
-        execve(concat_com[0], concat_com, NULL); 
-    }
+    free(buffer);
+    free_commands(path_dir);
+    free_commands(commands);
+    exit(EXIT_SUCCESS);
 }
 /**
  * 
@@ -65,10 +57,10 @@ void concat_commands(char **commands, char *buffer)
  * 
  * 
  */
-char **get_path_dir(void)
+char **get_path_dir(char **commands)
 {
-    char *path, **dir_path, *token;
-    int num_dir = 0, w, i;
+    char *path = NULL, **dir_path = NULL, *token = NULL;
+    int num_dir = 0, w, i, len_comm = 0, len_dir = 0;
 
     path = getenv("PATH");
     for (w = 0; path[w] != '\0'; w++)
@@ -76,20 +68,22 @@ char **get_path_dir(void)
 	    if (path[w + 1] == ':' || path[w + 1] == '\0')
 			num_dir++;
 	}
-    dir_path = malloc(sizeof(char *) * (num_dir + 1));
+    dir_path = malloc(sizeof(char *) + (num_dir + 1));
     if (dir_path == NULL)
         return (NULL);
     i = 0;
 	token = strtok(path, ":");
 	while (token != NULL)
 	{
-		dir_path[i] = malloc(_strlen(token) + 1);
+        len_dir = _strlen(token);
+        len_comm = _strlen(commands[0]);
+		dir_path[i] = malloc(sizeof(char) * ( len_dir + len_comm + 2));
 		if (dir_path[i] == NULL)
 		{
 			free_commands(dir_path);
 			return (NULL);
 		}
-		_strncpy(dir_path[i], token, _strlen(token) + 1);
+        _copy_string(dir_path[i], token, commands[0], len_dir, len_comm);
 		token = strtok(NULL, ":");
 		i++;
 	}

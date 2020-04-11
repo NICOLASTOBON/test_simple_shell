@@ -45,5 +45,5 @@ int _strlen(char *s);
 
 /**FUNCTIONS ENVIRONMENT */
 void concat_commands(char **commands, char *buffer);
-char **get_path_dir(void);
+char **get_path_dir(char **commands);
 #endif

@@ -59,8 +59,8 @@ int _strlen(char *s)
  */
 void c_not_found(char **commands, char *buffer, char **argv, int num_command)
 {
-	printf("%s: %d: ", argv[0], num_command);
-	printf("command not found: %s\n", commands[0]);
+	(void)argv;
+	(void)num_command;
 	free(buffer);
 	free_commands(commands);
 	exit(EXIT_SUCCESS);

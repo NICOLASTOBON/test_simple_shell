@@ -21,5 +21,6 @@ int val_execute_command(char **commands, char *buffer, char **var, char **env)
 		execve(commands[0], commands, NULL);
 	else
 		concat_commands(commands, buffer);
+
 	return (-1);
 }

@@ -1,2 +1,2 @@
 #!/bin/bash
-cat holberton.h
+ls -1

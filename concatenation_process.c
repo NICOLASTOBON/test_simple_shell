@@ -2,36 +2,6 @@
 /**
  * 
  * 
- */
-char *_copy_string(char *dir_path, char *token, char *commands, int len_dir, int len_comm)
-{
-    int i, j;
-
-    for (i = 0; i < len_dir && token[i] != '\0'; i++)
-        dir_path[i] = token[i];
-    dir_path[i] = '/';
-    i++;
-    for (j = 0; j < len_comm && commands[j] != '\0';i++, j++)
-        dir_path[i] = commands[j];
-    dir_path[i] = '\0';
-
-    return (dir_path);
-}
-
-char *_strcat(char *dest, char *src)
-{
-	int i, j;
-
-	for (i = 0; dest[i] != '\0'; i++)
-		;
-	for (j = 0; src[j] != '\0';j++)
-		dest[i + j] = src[j];
-
-	return (dest);
-}
-/**
- * 
- * 
  * 
  */
 void concat_commands(char **commands, char *buffer)
@@ -60,15 +30,14 @@ void concat_commands(char **commands, char *buffer)
 char **get_path_dir(char **commands)
 {
     char *path = NULL, **dir_path = NULL, *token = NULL;
-    int num_dir = 0, w, i, len_comm = 0, len_dir = 0;
-
+    int num_dir = 0, w, i, len_comm = 0, len_dir = 0, k , j;
     path = getenv("PATH");
     for (w = 0; path[w] != '\0'; w++)
 	{
 	    if (path[w + 1] == ':' || path[w + 1] == '\0')
-			num_dir++;
+		    num_dir++;
 	}
-    dir_path = malloc(sizeof(char *) + (num_dir + 1));
+    dir_path = malloc(sizeof(char *) * (num_dir + 1));
     if (dir_path == NULL)
         return (NULL);
     i = 0;
@@ -83,8 +52,17 @@ char **get_path_dir(char **commands)
 			free_commands(dir_path);
 			return (NULL);
 		}
-        _copy_string(dir_path[i], token, commands[0], len_dir, len_comm);
-		token = strtok(NULL, ":");
+        else 
+        {
+            for (k = 0; k < len_dir && token[k] != '\0'; k++)
+                dir_path[i][k] = token[k];
+            dir_path[i][k] = '/';
+            k++;
+            for (j = 0; j < len_comm && commands[0][j] != '\0';k++, j++)
+                dir_path[i][k] = commands[0][j];
+            dir_path[i][k] = '\0';
+        }
+        token = strtok(NULL, ":");
 		i++;
 	}
     dir_path[i] = NULL;

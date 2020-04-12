@@ -49,36 +49,4 @@ int concat_commands(char **commands, char *buffer, char **env);
 char **get_path_dir(char **commands, char **env);
 char *get_path_str(char **env);
 
-
-/**/
-/**
- * struct op - Struct op
- *
- * @op: The operator
- * @f: The function associated
- */
-typedef struct op
-{
-	char op;
-	int (*f)();
-} argum;
-
-int _printf(const char *format, ...);
-int print_func(const char *format, argum fm[], va_list formato);
-int _putchar(char c);
-int print_c(va_list formato);
-int print_s(va_list formato);
-int print_p(void);
-int print_d(va_list formato);
-int print_i(va_list formato);
-int print_u(va_list formato);
-int print_r(va_list formato);
-void print_rev(char *s);
-int print_b(va_list formato);
-int rot13(char *s);
-int print_R(va_list formato);
-int print_o(va_list formato);
-int print_hexLower(va_list formato);
-int print_hexUpper(va_list formato);
-
 #endif

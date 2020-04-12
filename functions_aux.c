@@ -54,19 +54,6 @@ int _strlen(char *s)
 /**
  *
  *
- *
- *
- */
-void c_not_found(char **commands, char *buffer, char **argv, int num_command)
-{
-	_printf("%s: %d: %s: not found\n", argv[0], num_command, commands[0]);
-	free(buffer);
-	free_commands(commands);
-	exit(127);
-}
-/**
- *
- *
  */
 void end_of_file(char *buffer)
 {

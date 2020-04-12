@@ -14,9 +14,9 @@ int prompt(char *argv[], char *env[], char *var[])
 	pid_t pid;
 	(void)argv;
 
+	signal(SIGINT, ctrlc__handler);	/**Signal for ctrl + c*/
 	while ((ret_getl = getline(&buffer, &size, stdin)))
 	{
-		signal(SIGINT, ctrlc__handler);	/**Signal for ctrl + c*/
 		if (ret_getl == EOF)
 			end_of_file(buffer);
 		num_command++;

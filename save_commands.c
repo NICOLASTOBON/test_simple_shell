@@ -10,12 +10,15 @@ char **save_commands(char *buffer)
 	char *temp, **com;
 
 	/* change \n given by getline */
-	buffer[strlen(buffer) - 1] = '\0';
+	buffer[_strlen(buffer) - 1] = '\0';
 	/* numbers delimiters */
 	for (w = 0; buffer[w] != '\0'; w++)
 	{
-		if (buffer[w + 1] == ' ' || buffer[w + 1] == '\0')
-			num_words++;
+		if (buffer[w] != ' ')
+		{
+			if (buffer[w + 1] == ' ' || buffer[w + 1] == '\0')
+				num_words++;
+		}
 	}
 	if (num_words == 0)
 		return (NULL);

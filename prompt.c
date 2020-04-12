@@ -8,7 +8,7 @@
 int prompt(char *argv[], char *env[], char *var[])
 {
 	char *buffer = NULL, **commands;
-	int num_command = 0, res = 0, status;
+	int num_command = 0, status;
 	size_t size = 0;
 	ssize_t ret_getl;
 	pid_t pid;
@@ -25,11 +25,7 @@ int prompt(char *argv[], char *env[], char *var[])
 		if (pid == -1)	/** validate if process creation works*/
 			perror("Fork");
 		if (pid == 0)	/** validate if it's child*/
-		{
-			res = val_execute_command(commands, buffer, var, env);
-			if (res == -1)
-				c_not_found(commands, buffer, argv, num_command);
-		}
+			val_execute_command(commands, buffer, var, env);
 		else	/** its parent*/
 		{
 			wait(&status);

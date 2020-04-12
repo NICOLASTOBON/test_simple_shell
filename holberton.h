@@ -17,7 +17,7 @@ char **save_commands(char *buffer);
 /**own strtok function*/
 char *own_strtok(char *str, const char *delim, int *index);
 /**validation and execute commands**/
-int val_execute_command(char **commands, char *buffer, char **var, char **env);
+void val_execute_command(char **commands, char *buffer, char **var, char **env);
 /** free double pointer */
 void free_commands(char **commands);
 /* exit prompt */
@@ -44,6 +44,7 @@ char *_strncpy(char *dest, char *src, int n);
 int _strlen(char *s);
 
 /**FUNCTIONS ENVIRONMENT */
-void concat_commands(char **commands, char *buffer);
-char **get_path_dir(char **commands);
+void concat_commands(char **commands, char *buffer, char **env);
+char **get_path_dir(char **commands, char **env);
+char *get_path_str(char **env);
 #endif

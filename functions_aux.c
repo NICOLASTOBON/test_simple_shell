@@ -59,8 +59,9 @@ int _strlen(char *s)
  */
 void c_not_found(char **commands, char *buffer, char **argv, int num_command)
 {
-	(void)argv;
 	(void)num_command;
+	(void)argv;
+	write(STDERR_FILENO,"Not found\n", 11);
 	free(buffer);
 	free_commands(commands);
 	exit(EXIT_SUCCESS);

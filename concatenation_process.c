@@ -4,18 +4,20 @@
  * 
  * 
  */
-void concat_commands(char **commands, char *buffer)
+void concat_commands(char **commands, char *buffer, char **env)
 {
     char **path_dir = NULL;
     int i = 0;
 
-    path_dir = get_path_dir(commands);
+    path_dir = get_path_dir(commands, env);
     while (path_dir[i] != NULL)
     {
         if (access(path_dir[i], F_OK) == 0)
             execve(path_dir[i], commands, NULL);
         i++;
     }
+    if (path_dir[i] ==  NULL)
+        write(STDERR_FILENO,"Not found\n", 11);
     free(buffer);
     free_commands(path_dir);
     free_commands(commands);
@@ -27,11 +29,11 @@ void concat_commands(char **commands, char *buffer)
  * 
  * 
  */
-char **get_path_dir(char **commands)
+char **get_path_dir(char **commands, char **env)
 {
     char *path = NULL, **dir_path = NULL, *token = NULL;
     int num_dir = 0, w, i, len_comm = 0, len_dir = 0, k , j;
-    path = getenv("PATH");
+    path = get_path_str(env);
     for (w = 0; path[w] != '\0'; w++)
 	{
 	    if (path[w + 1] == ':' || path[w + 1] == '\0')
@@ -67,4 +69,28 @@ char **get_path_dir(char **commands)
 	}
     dir_path[i] = NULL;
     return (dir_path);
+}
+/**
+ * 
+ * 
+ * 
+ */
+char *get_path_str(char **env)
+{
+    int i, j;
+    char name[4] = "PATH";
+
+    for (i = 0; env[i] != NULL; i++)
+    {
+        for (j = 0; name[j] != '\0'; j++)
+        {
+            if (env[i][j] == name[j])
+                continue;
+            else
+                break;
+        }
+        if (name[j] == '\0')
+            break;
+    }
+    return (env[i]);
 }

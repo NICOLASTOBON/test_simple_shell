@@ -1,7 +1,9 @@
 #include "holberton.h"
 
-void val_execute_command(char **commands, char *buffer, char **var, char **env)
+int val_execute_command(char **commands, char *buffer, char **var, char **env)
 {
+	int c_found = 0;
+
 	if (commands == NULL)
 	{
 		free(buffer);
@@ -20,5 +22,10 @@ void val_execute_command(char **commands, char *buffer, char **var, char **env)
 	else if (access(commands[0], F_OK) == 0)
 		execve(commands[0], commands, NULL);
 	else
-		concat_commands(commands, buffer, env);
+	{
+		c_found = concat_commands(commands, buffer, env);
+		if (c_found == -1)
+			return (-1);
+	}
+	return (0);
 }

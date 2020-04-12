@@ -59,12 +59,10 @@ int _strlen(char *s)
  */
 void c_not_found(char **commands, char *buffer, char **argv, int num_command)
 {
-	(void)num_command;
-	(void)argv;
-	write(STDERR_FILENO,"Not found\n", 11);
+	_printf("%s: %d: %s: not found\n", argv[0], num_command, commands[0]);
 	free(buffer);
 	free_commands(commands);
-	exit(EXIT_SUCCESS);
+	exit(127);
 }
 /**
  *

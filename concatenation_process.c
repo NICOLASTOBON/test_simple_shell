@@ -4,7 +4,7 @@
  * 
  * 
  */
-void concat_commands(char **commands, char *buffer, char **env)
+int concat_commands(char **commands, char *buffer, char **env)
 {
     char **path_dir = NULL;
     int i = 0;
@@ -17,7 +17,10 @@ void concat_commands(char **commands, char *buffer, char **env)
         i++;
     }
     if (path_dir[i] ==  NULL)
-        write(STDERR_FILENO,"Not found\n", 11);
+    {
+        free_commands(path_dir);
+        return (-1);
+    }
     free(buffer);
     free_commands(path_dir);
     free_commands(commands);

@@ -1,5 +1,4 @@
 #include "holberton.h"
-
 void free_commands(char **commands)
 {
 	int i;

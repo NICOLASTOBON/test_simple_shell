@@ -36,7 +36,7 @@ int prompt(char *argv[], char *env[], char *var[])
 			if (commands == NULL)
 				free_all(buffer, commands);
 			/* free buffer, commands and execute exit father */
-			else if (strcmp(commands[0], var[0]) == 0)
+			else if (_strcmp(commands[0], var[0]) == 0)
 				exit_free(buffer, commands);
 			else
 				free_all(buffer, commands);
